@@ -1,0 +1,25 @@
+<div class="tasks-container">
+  <form
+    [formGroup]="taskForm"
+    (ngSubmit)="editingTaskId ? updateTask() : addTask()"
+  >
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <button mat-button type="submit">
+      {{ editingTaskId ? "Update" : "Add" }} Task
+    </button>
+  </form>
+
+  <div *ngFor="let task of tasks">
+    <h3>{{ task.title }}</h3>
+    <p>{{ task.description }}</p>
+    <button mat-button (click)="editTask(task)">Edit</button>
+    <button mat-button (click)="deleteTask(task.id)">Delete</button>
+  </div>
+</div>

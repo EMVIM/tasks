@@ -1,0 +1,32 @@
+<div class="todo-form">
+  <form [formGroup]="todoForm" (ngSubmit)="addTask()">
+    <mat-form-field appearance="fill">
+      <mat-label>Tarea</mat-label>
+      <input matInput formControlName="task" />
+      <mat-error *ngIf="todoForm.get('task')?.invalid"
+        >La tarea es requerida.</mat-error
+      >
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="todoForm.invalid"
+    >
+      Agregar Tarea
+    </button>
+  </form>
+  <mat-list class="todo-list">
+    <mat-list-item *ngFor="let todo of todos; let i = index">
+      <div class="todo-list__item">
+        <div class="item__left">
+          <mat-icon matListIcon>check_circle</mat-icon>
+          <div matLine>{{ todo.task }}</div>
+        </div>
+        <button mat-icon-button color="warn" (click)="removeTask(todo.id)">
+          <mat-icon>delete_sweep</mat-icon>
+        </button>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>

@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-title>{{ question }}</mat-card-title>
+  <form [formGroup]="surveyForm" (ngSubmit)="submit()" class="survey-form">
+    <mat-radio-group formControlName="favoriteLanguage" class="radio-group">
+      <mat-radio-button
+        *ngFor="let option of options; let i = index"
+        [value]="option"
+        class="radio-button"
+      >
+        {{ option }}
+      </mat-radio-button>
+    </mat-radio-group>
+    <button mat-raised-button color="primary" type="submit">Enviar</button>
+  </form>
+  <!-- BLOCK RESULTS -->
+  <div *ngIf="results" class="results-container">
+    <h3>Resultados</h3>
+    <pre>{{ results | json }}</pre>
+  </div>
+</mat-card>
